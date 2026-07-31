@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhishek Rathod | RIGHTNOWSTUDIOS - Industrial Designer & Mechanical Engineer</title>
+  <meta name="description" content="Industrial Design and 3D Visualization Portfolio of Abhishek Rathod, founder of RIGHTNOWSTUDIOS. Specializing in CAD, CMF development, and product design.">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph / SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Abhishek Rathod | RIGHTNOWSTUDIOS">
+  <meta property="og:description" content="Industrial Design & Mechanical Engineering Portfolio.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23f2542d%22/></svg>">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Glow -->
+  <div class="bg-glow"></div>
+
+  <!-- Industrial Notched Dial Knob Button (Fixed top-right, dynamically rendered from config.js) -->
+  <button class="retro-knob-btn" id="retroKnobBtn" aria-label="Scroll to Top" title="Scroll to Top">
+    <!-- SVG rendered dynamically via script.js from SITE_CONFIG.knobMenu -->
+  </button>
+
+  <!-- Non-Sticky Centered Header (Scrolls up naturally with page) -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#" class="brand-logo" id="brandLogo">
+        Abhishek Rathod <span class="brand-divider">|</span> RIGHTNOWSTUDIOS
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="container">
+
+    <!-- Hero Section (Wider Spacing with Rolling Text Animation) -->
+    <section class="hero-section" id="heroSection">
+      <h1 class="hero-title" id="heroTitle">
+        Hi I'm <span class="accent-text">Abhi.</span> <span id="heroIntroStatic">An Industrial Designer and</span>
+        <span class="roll-wrapper">
+          <span class="roll-words-container" id="rollWordsContainer">
+            <!-- Rolling words injected dynamically via script.js -->
+          </span>
+        </span>
+      </h1>
+
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary" id="btnResume" target="_blank" rel="noopener">Resume</a>
+        <button class="btn btn-secondary" id="btnTalk">Let's talk</button>
+      </div>
+    </section>
+
+    <!-- Projects Bento Grid (Kept at original constrained width) -->
+    <div class="portfolio-grid-wrapper">
+      <section class="portfolio-grid" id="portfolioGrid" aria-label="Selected Projects Work">
+        <!-- Injected via script.js from config.js -->
+      </section>
+    </div>
+
+    <!-- Built by Hands Callout Section (Inspired by sushantvohra.com) -->
+    <section class="built-by-hands-section" id="builtByHandsSection">
+      <h2 class="built-by-hands-label" id="builtByHandsLabel">Built by hands</h2>
+      <p class="built-by-hands-text" id="builtByHandsText">
+        <!-- Injected dynamically via script.js from config.js -->
+      </p>
+    </section>
+
+    <!-- Services Accordion Section (Wider Spacing) -->
+    <section class="services-section" id="servicesSection">
+      <h2 class="services-label">Services</h2>
+
+      <div class="accordion-container" id="accordionContainer">
+        <!-- Injected via script.js from config.js -->
+      </div>
+    </section>
+
+    <!-- Dark Footer Card Section (Wider Spacing) -->
+    <footer class="footer-card" id="footerCard">
+      <div class="footer-header">
+        <div class="footer-tagline" id="footerTagline">
+          Abhi means 'right now'<br>The name is a nod to being
+        </div>
+
+        <div class="footer-socials" id="footerSocials">
+          <!-- Social Pills Injected via script.js -->
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <h2 class="footer-brand" id="footerBrand">RIGHTNOWSTUDIOS</h2>
+        <div class="footer-meta">
+          <span id="footerCopyright">© 2026 Abhishek Rathod Industrial Designer</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Contact Modal -->
+  <div class="contact-modal" id="contactModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+      <h3 class="modal-title">Start a Conversation</h3>
+      <p class="modal-subtitle">Feel free to reach out for project inquiries, freelance work, or full-time roles.</p>
+      
+      <form class="contact-form" id="contactForm" onsubmit="event.preventDefault(); alert('Message sent! Abhishek will get back to you soon.'); document.getElementById('contactModal').classList.remove('active');">
+        <div class="form-group">
+          <label for="userName">Your Name</label>
+          <input type="text" id="userName" placeholder="Jane Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Your Email</label>
+          <input type="email" id="userEmail" placeholder="jane@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="userMessage">Project Details / Message</label>
+          <textarea id="userMessage" rows="4" placeholder="Tell me about your product or project idea..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Configuration & Logic Scripts -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

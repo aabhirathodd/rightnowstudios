@@ -1,0 +1,701 @@
+/* ==========================================================================
+   RIGHTNOWSTUDIOS - STYLESHEET
+   ==========================================================================
+   CSS CUSTOM VARIABLES (EASY NON-CODER COLOR & FONT CONTROLS)
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --accent-orange: #f2542d;       /* Retro Industrial terracotta orange */
+  --accent-orange-hover: #d9421a; /* Darker orange on hover */
+  --bg-color: #ffffff;            /* Website main background */
+  --text-dark: #0f0f0f;           /* Primary dark text color */
+  --text-muted: #666666;          /* Secondary subtitle text color */
+  --card-bg: #e5e5e5;             /* Card fallback background color */
+  --footer-bg: #0b0b0b;           /* Dark footer background color */
+  --footer-text: #ffffff;         /* Dark footer text color */
+  --border-subtle: #e0e0e0;       /* Divider line color */
+
+  /* Typography */
+  --font-heading: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Layout & Spacing */
+  --max-width: 1440px;            /* Expanded width for Intro, Services & Footer */
+  --grid-max-width: 1040px;       /* Constrained width reserved for Project Grid */
+  --radius-card: 20px;
+  --radius-pill: 50px;
+  --transition-fast: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+  padding-bottom: 60px;
+}
+
+/* Background Ambient Glow */
+.bg-glow {
+  position: fixed;
+  top: -20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  height: 50vh;
+  background: radial-gradient(circle, rgba(242, 84, 45, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Page Layout Container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   FLAT NOTCHED INDUSTRIAL DIAL KNOB BUTTON (Fixed Top-Right)
+   Inspired by Tactile Industrial Hardware Design with Notched Edges & Dual Ridges
+   -------------------------------------------------------------------------- */
+.retro-knob-btn {
+  position: fixed;
+  top: 28px;
+  right: 36px;
+  width: 46px; /* Dynamically set via config.js */
+  height: 46px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1000;
+  padding: 0;
+  outline: none;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+  transition: filter 0.25s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.retro-knob-btn:hover {
+  filter: drop-shadow(0 6px 16px rgba(242, 84, 45, 0.45));
+}
+
+.knob-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+}
+
+/* --------------------------------------------------------------------------
+   SITE HEADER (Non-Sticky, Centered, Scrolls up naturally)
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: relative;
+  width: 100%;
+  padding: 36px 0 20px 0;
+  z-index: 10;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-logo {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  text-align: center;
+  transition: opacity var(--transition-fast);
+}
+
+.brand-logo:hover {
+  opacity: 0.8;
+}
+
+.brand-divider {
+  color: #bbb;
+  margin: 0 8px;
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   HERO SECTION (Wider Layout with Rolling Text Animation)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding: 60px 0 70px 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 3.85rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: var(--text-dark);
+  margin-bottom: 32px;
+  max-width: 1150px;
+}
+
+.accent-text {
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+/* Rolling Text Element Wrapper (Louie.pro style) */
+.roll-wrapper {
+  display: inline-flex;
+  position: relative;
+  height: 1.15em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.roll-words-container {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  top: 0;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.roll-word {
+  display: inline-block;
+  height: 1.15em;
+  line-height: 1.15em;
+  white-space: nowrap;
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Pill Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--accent-orange);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(242, 84, 45, 0.35);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-dark);
+  border-color: #333333;
+}
+
+.btn-secondary:hover {
+  background-color: var(--text-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   PORTFOLIO BENTO GRID (Constrained to original 1040px width)
+   -------------------------------------------------------------------------- */
+.portfolio-grid-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio-grid {
+  width: 100%;
+  max-width: var(--grid-max-width);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 90px;
+}
+
+.project-card {
+  position: relative;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 4 / 3;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.project-card.hero-card {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+.project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-card-image {
+  transform: scale(1.04);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Overlay gradient & text */
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 28px;
+  color: #ffffff;
+  opacity: 0.95;
+  transition: opacity var(--transition-fast);
+}
+
+.project-category {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.project-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.hero-card .project-title {
+  font-size: 1.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   BUILT BY HANDS SECTION (Inspired by sushantvohra.com "World Building")
+   -------------------------------------------------------------------------- */
+.built-by-hands-section {
+  padding: 90px 0;
+  width: 100%;
+  max-width: 100%;
+  border-top: 1px solid var(--border-subtle);
+  margin-bottom: 80px;
+}
+
+.built-by-hands-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 28px;
+}
+
+.built-by-hands-text {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  max-width: 100%; /* Cover full width of the page */
+  word-break: keep-all; /* Prevent awkward word breaks */
+  overflow-wrap: break-word; /* Ensure fallback safety */
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES SECTION (Wider Layout to cover sides)
+   -------------------------------------------------------------------------- */
+.services-section {
+  margin-bottom: 100px;
+  width: 100%;
+  max-width: 100%;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 60px;
+}
+
+.services-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 16px;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.accordion-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+}
+
+.accordion-header:hover .accordion-title {
+  color: var(--accent-orange);
+}
+
+.accordion-icon {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text-dark);
+  transition: transform var(--transition-fast);
+  display: inline-block;
+  line-height: 1;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(45deg);
+  color: var(--accent-orange);
+}
+
+/* Accordion Collapsible Body */
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-smooth), padding var(--transition-smooth);
+  overflow: hidden;
+}
+
+.accordion-item.active .accordion-body {
+  grid-template-rows: 1fr;
+  padding-top: 16px;
+}
+
+.accordion-content {
+  min-height: 0;
+}
+
+.service-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-list li {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: #333333;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   DARK FOOTER CARD (Wider Layout to cover sides)
+   -------------------------------------------------------------------------- */
+.footer-card {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-radius: 28px;
+  padding: 56px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 380px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.footer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.footer-tagline {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: #a0a0a0;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Social Buttons / Circular Pills */
+.social-pill {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.social-pill:hover {
+  background-color: var(--accent-orange);
+  border-color: var(--accent-orange);
+  transform: translateY(-3px) scale(1.06);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-brand {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.footer-meta {
+  font-size: 0.85rem;
+  color: #777777;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT MODAL
+   -------------------------------------------------------------------------- */
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.contact-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 36px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  transform: translateY(20px);
+  transition: transform var(--transition-smooth);
+}
+
+.contact-modal.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #888;
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.modal-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-orange);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .header-inner {
+    padding: 0 24px;
+  }
+
+  .retro-knob-btn {
+    top: 20px;
+    right: 20px;
+  }
+
+  .hero-title {
+    font-size: 2.35rem;
+  }
+
+  .built-by-hands-text {
+    font-size: 1.55rem;
+  }
+
+  .built-by-hands-section {
+    padding: 50px 0;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card,
+  .project-card.hero-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .footer-card {
+    padding: 36px 28px;
+  }
+
+  .footer-brand {
+    font-size: 2.25rem;
+  }
+
+  .footer-header {
+    flex-direction: column;
+  }
+}
