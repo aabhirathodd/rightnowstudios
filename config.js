@@ -40,7 +40,7 @@ const SITE_CONFIG = {
     rollSpeed: 2000,              // Duration each word is shown (2000 = 2 seconds)
     transitionDuration: 800,      // Speed of the roll-up animation (800 = 0.8 seconds)
     
-    resumeUrl: "assets/resume.pdf",
+    resumeUrl: "assets/Abhishek_Rathod_Resume_.pdf",
     contactEmail: "abhishekrathoddesign@gmail.com", // Your Gmail address locked in
     letsTalkText: "Let's talk"
   },
