@@ -8,13 +8,13 @@
   /* Color Palette */
   --accent-orange: #f2542d;       /* Retro Industrial terracotta orange */
   --accent-orange-hover: #d9421a; /* Darker orange on hover */
-  --bg-color: #ffffff;            /* Website main background */
+  --bg-color: #fcfcfc;            /* Website main background */
   --text-dark: #0f0f0f;           /* Primary dark text color */
-  --text-muted: #666666;          /* Secondary subtitle text color */
+  --text-muted: #777777;          /* Secondary subtitle text color */
   --card-bg: #e5e5e5;             /* Card fallback background color */
   --footer-bg: #0b0b0b;           /* Dark footer background color */
   --footer-text: #ffffff;         /* Dark footer text color */
-  --border-subtle: #e0e0e0;       /* Divider line color */
+  --border-subtle: #e8e8e8;       /* Divider line color */
 
   /* Typography */
   --font-heading: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -45,6 +45,10 @@ html {
 
 body {
   background-color: var(--bg-color);
+  /* Repeating grid background image from config.js variable */
+  background-image: var(--bg-image, url('assets/background-grid.svg'));
+  background-repeat: repeat;
+  background-attachment: fixed;
   color: var(--text-dark);
   font-family: var(--font-body);
   line-height: 1.5;
@@ -60,7 +64,7 @@ body {
   transform: translateX(-50%);
   width: 90vw;
   height: 50vh;
-  background: radial-gradient(circle, rgba(242, 84, 45, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(242, 84, 45, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -76,28 +80,28 @@ body {
 
 /* --------------------------------------------------------------------------
    FLAT NOTCHED INDUSTRIAL DIAL KNOB BUTTON (Fixed Top-Right)
-   Inspired by Tactile Industrial Hardware Design with Notched Edges & Dual Ridges
+   Inspired by liftoffchallenge.hypr-space.com
    -------------------------------------------------------------------------- */
 .retro-knob-btn {
   position: fixed;
   top: 28px;
   right: 36px;
-  width: 46px; /* Dynamically set via config.js */
-  height: 46px;
+  width: 44px; /* Set via config.js */
+  height: 44px;
   border: none;
   background: transparent;
   cursor: pointer;
   z-index: 1000;
   padding: 0;
   outline: none;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
   transition: filter 0.25s ease;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
 .retro-knob-btn:hover {
-  filter: drop-shadow(0 6px 16px rgba(242, 84, 45, 0.45));
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.2));
 }
 
 .knob-svg {
@@ -150,7 +154,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   HERO SECTION (Wider Layout with Rolling Text Animation)
+   HERO SECTION (Wider Layout with Rolling Text Animation & Suffix)
    -------------------------------------------------------------------------- */
 .hero-section {
   padding: 60px 0 70px 0;
@@ -162,11 +166,11 @@ body {
   font-family: var(--font-heading);
   font-size: 3.85rem;
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.25;
   letter-spacing: -0.035em;
   color: var(--text-dark);
   margin-bottom: 32px;
-  max-width: 1150px;
+  max-width: 1250px;
 }
 
 .accent-text {
@@ -251,7 +255,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   PORTFOLIO BENTO GRID (Constrained to original 1040px width)
+   PORTFOLIO MASONRY GRID (Pinterest Style Columns)
    -------------------------------------------------------------------------- */
 .portfolio-grid-wrapper {
   width: 100%;
@@ -262,77 +266,93 @@ body {
 .portfolio-grid {
   width: 100%;
   max-width: var(--grid-max-width);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  column-count: 2;
+  column-gap: 24px;
+  display: block; /* Columns work with standard block display */
   margin-bottom: 90px;
 }
 
 .project-card {
-  position: relative;
-  background-color: var(--card-bg);
+  break-inside: avoid;
+  display: block;
+  width: 100%;
+  margin-bottom: 24px;
+  background-color: transparent;
   border-radius: var(--radius-card);
-  overflow: hidden;
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  aspect-ratio: 4 / 3;
   transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
 }
 
-.project-card.hero-card {
-  grid-column: 1 / -1;
-  aspect-ratio: 16 / 9;
+.project-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: var(--radius-card);
+  border-top-right-radius: var(--radius-card);
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
 }
 
 .project-card-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  height: auto;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 .project-card:hover .project-card-image {
-  transform: scale(1.04);
+  transform: scale(1.025);
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-}
-
-/* Overlay gradient & text */
-.project-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 60%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 24px 28px;
-  color: #ffffff;
-  opacity: 0.95;
-  transition: opacity var(--transition-fast);
+/* Pinterest style Bottom Text Panel */
+.project-card-info {
+  padding: 18px 22px 20px 22px;
+  background-color: #ffffff;
+  border-bottom-left-radius: var(--radius-card);
+  border-bottom-right-radius: var(--radius-card);
+  border: 1px solid var(--border-subtle);
+  border-top: none;
 }
 
 .project-category {
   font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.8;
+  font-weight: 500;
+  color: var(--text-muted);
   margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.project-title {
+.project-title-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: color var(--transition-fast);
+}
+
+.project-title-link:hover {
+  color: var(--accent-orange);
+}
+
+.project-title-text {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 600;
   line-height: 1.2;
 }
 
-.hero-card .project-title {
-  font-size: 1.85rem;
+.project-arrow-icon {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-left: 8px;
+  transition: transform var(--transition-fast);
+}
+
+.project-title-link:hover .project-arrow-icon {
+  transform: translate(2px, -2px);
 }
 
 /* --------------------------------------------------------------------------
@@ -362,9 +382,9 @@ body {
   line-height: 1.35;
   letter-spacing: -0.02em;
   color: var(--text-dark);
-  max-width: 100%; /* Cover full width of the page */
-  word-break: keep-all; /* Prevent awkward word breaks */
-  overflow-wrap: break-word; /* Ensure fallback safety */
+  max-width: 100%;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* --------------------------------------------------------------------------
@@ -511,7 +531,7 @@ body {
   gap: 14px;
 }
 
-/* Social Buttons / Circular Pills */
+/* Social Buttons / Circular Pills with SVG Icons */
 .social-pill {
   width: 52px;
   height: 52px;
@@ -522,8 +542,6 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
   transition: all var(--transition-fast);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -532,6 +550,12 @@ body {
   background-color: var(--accent-orange);
   border-color: var(--accent-orange);
   transform: translateY(-3px) scale(1.06);
+}
+
+.social-pill svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }
 
 .footer-bottom {
@@ -679,12 +703,7 @@ body {
   }
 
   .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card,
-  .project-card.hero-card {
-    aspect-ratio: 4 / 3;
+    column-count: 1; /* Stack cards in a single column on mobile */
   }
 
   .footer-card {
